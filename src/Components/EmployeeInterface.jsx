@@ -8,12 +8,14 @@ import { useDispatch } from 'react-redux';
 
 export default function EmployeeInterface() {
     const dispatch = useDispatch()
-    const [employeeid , setEmployeeId] = useState()
+    const [id , setEmployeeId] = useState()
     const [name , setName] = useState("")
     const [city , setCity] = useState("")
 
     const handleSubmit = () =>{
-      dispatch({type:"ADD_EMPLOYEE"})
+        const body={id:id,name:name,city:city}
+
+      dispatch({type:"ADD_EMPLOYEE",payload:[id,body]})
     }
     
     return (<Box
