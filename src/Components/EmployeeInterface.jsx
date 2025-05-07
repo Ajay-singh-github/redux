@@ -3,7 +3,19 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 export default function EmployeeInterface() {
+    const dispatch = useDispatch()
+    const [employeeid , setEmployeeId] = useState()
+    const [name , setName] = useState("")
+    const [city , setCity] = useState("")
+
+    const handleSubmit = () =>{
+      dispatch({type:"ADD_EMPLOYEE"})
+    }
+    
     return (<Box
         sx={{
             display: 'flex',
@@ -16,15 +28,15 @@ export default function EmployeeInterface() {
             },
         }}
     >
-
-       
-       
         <Paper style={{display:'flex',flexDirection:'column',gap:"30px",alignItems:'center'}}>  
-            <TextField id="outlined-basic" label="Employee Id" variant="outlined" style={{width:'90%'}}/>
-            <TextField id="outlined-basic" label="Employee Name" variant="outlined" style={{width:'90%'}}/>
-            <TextField id="outlined-basic" label="Employee City" variant="outlined" style={{width:'90%'}}/>
+
+            <TextField id="outlined-basic" label="Employee Id" variant="outlined" style={{width:'90%'}} onChange={(e)=>setEmployeeId(e.target.value)}/>
+
+            <TextField id="outlined-basic" label="Employee Name" variant="outlined" style={{width:'90%'}} onChange={(e)=>setName(e.target.value)}/>
+            <TextField id="outlined-basic" label="Employee City" variant="outlined" style={{width:'90%'}} onChange={(e)=>setCity(e.target.value)}/>
+
            <div style={{display:'flex',gap:"100px",marginTop:"30px"}}>
-           <Button variant="outlined">Submit</Button>
+           <Button variant="outlined" onClick={()=>handleSubmit()}>Submit</Button>
            <Button variant="outlined">Display</Button>
            </div>
         </Paper>
