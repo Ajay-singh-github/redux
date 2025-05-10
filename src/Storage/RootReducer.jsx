@@ -30,5 +30,6 @@ export default function RootReducer(state = initialState , action)
                break;
         default:
             alert("plz choose right case")
+            
     }
 }

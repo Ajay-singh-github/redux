@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
 
 export default function EmployeeInterface() {
     const dispatch = useDispatch()
@@ -16,6 +17,14 @@ export default function EmployeeInterface() {
         const body={id:id,name:name,city:city}
 
       dispatch({type:"ADD_EMPLOYEE",payload:[id,body]})
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your Employee Data has been saved successfully!",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
     
     return (<Box
