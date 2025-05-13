@@ -19,7 +19,6 @@ export default function RootReducer(state = initialState , action)
                 state.employeeData[action.payload[0]] = action.payload[1]
                 console.log(state.employeeData)
                 return {employeeData:state.employeeData}
-                break;
     
         case "DEL_EMPLOYEE":
                alert("Yes it is ready to delete the data in this object.")
@@ -29,7 +28,7 @@ export default function RootReducer(state = initialState , action)
                alert("Yes it is ready to Edit the data in this object.")
                break;
         default:
-            alert("plz choose right case")
+            // alert("plz choose right case")
             
     }
 }

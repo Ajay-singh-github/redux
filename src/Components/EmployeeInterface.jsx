@@ -6,8 +6,10 @@ import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 export default function EmployeeInterface() {
+    var navigate = useNavigate()
     const dispatch = useDispatch()
     const [id , setEmployeeId] = useState()
     const [name , setName] = useState("")
@@ -48,7 +50,7 @@ export default function EmployeeInterface() {
 
            <div style={{display:'flex',gap:"100px",marginTop:"30px"}}>
            <Button variant="outlined" onClick={()=>handleSubmit()}>Submit</Button>
-           <Button variant="outlined">Display</Button>
+           <Button variant="outlined" onClick={()=>navigate("/employeedisplay")}>Display</Button>
            </div>
         </Paper>
 
