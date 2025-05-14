@@ -25,10 +25,9 @@ export default function RootReducer(state = initialState , action)
                break
 
         case "EDIT_EMPLOYEE":
-               alert("Yes it is ready to Edit the data in this object.")
-               break;
+             state.employeeData[action.payload[0]] = action.payload[1]
+             return {employeeData:state.employeeData}
         default:
-            // alert("plz choose right case")
-            
+            return {employeeData:state.employeeData}
     }
 }
