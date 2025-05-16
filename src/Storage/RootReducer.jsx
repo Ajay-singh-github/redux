@@ -1,15 +1,6 @@
 const initialState = { employeeData: {} }
 
 
-/*
-initialState.employeeData[action.payload[0]] = action.payload[1]
-
-var obj = {name:"",address""}
-
- obj.name = "rahul"
- obj[name] = "rahul"
-
-*/
 
 export default function RootReducer(state = initialState , action)
 {
@@ -21,8 +12,10 @@ export default function RootReducer(state = initialState , action)
                 return {employeeData:state.employeeData}
     
         case "DEL_EMPLOYEE":
-               alert("Yes it is ready to delete the data in this object.")
-               break
+             delete state.employeeData[action.payload[0]]
+             return {employeeData:state.employeeData}
+                // delete state.employeeData.action.payload[0]
+             break
 
         case "EDIT_EMPLOYEE":
              state.employeeData[action.payload[0]] = action.payload[1]

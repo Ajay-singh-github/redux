@@ -16,28 +16,38 @@ export default function EmployeeDisplay() {
     const employeeData = useSelector((state) => state?.employeeData)
     const valueofemployeedata = Object.values(employeeData || {})
     const [editstatus, setEditStatus] = useState(false)
-    const [employeeid ,setEmployeeId] = useState()
-    const [employeename ,setEmployeeName] = useState()
-    const [employeecity,setEmployeeCity]=  useState()
+    const [employeeid, setEmployeeId] = useState()
+    const [employeename, setEmployeeName] = useState()
+    const [employeecity, setEmployeeCity] = useState()
 
-    const handleDelete = () => {
+    const handleDelete = (id) => {
+        dispatch({type:"DEL_EMPLOYEE",payload:[id]})
 
         Swal.fire({
-            title: "Do You Want To Delete The Data?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
-            }
+            position: "top-end",
+            icon: "success",
+            title: "Your Employee Data has been saved successfully!",
+            showConfirmButton: false,
+            timer: 1500
         });
+
+
+        // Swal.fire({
+        //     title: "Do You Want To Delete The Data?",
+        //     icon: "warning",
+        //     showCancelButton: true,
+        //     confirmButtonColor: "#3085d6",
+        //     cancelButtonColor: "#d33",
+        //     confirmButtonText: "Yes, delete it!"
+        // }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         Swal.fire({
+        //             title: "Deleted!",
+        //             text: "Your file has been deleted.",
+        //             icon: "success"
+        //         });
+        //     }
+        // });
     };
 
     // Define styles
@@ -74,8 +84,8 @@ export default function EmployeeDisplay() {
         setEditStatus(true)
     }
 
-    const handleUpdate =()=>{
-        dispatch({type:"EDIT_EMPLOYEE",payload:[employeeid,{"id":employeeid,"name":employeename,"city":employeecity}]})
+    const handleUpdate = () => {
+        dispatch({ type: "EDIT_EMPLOYEE", payload: [employeeid, { "id": employeeid, "name": employeename, "city": employeecity }] })
     }
 
     return (
@@ -96,7 +106,7 @@ export default function EmployeeDisplay() {
                     >
                         <Paper style={{ display: 'flex', flexDirection: 'column', gap: "30px", alignItems: 'center' }}>
 
-                            <TextField value={employeeid} id="outlined-basic"  label="Employee Id" variant="outlined" style={{ width: '90%' }} onChange={(e) => setEmployeeId(e.target.value)} />
+                            <TextField value={employeeid} id="outlined-basic" label="Employee Id" variant="outlined" style={{ width: '90%' }} onChange={(e) => setEmployeeId(e.target.value)} />
 
                             <TextField value={employeename} id="outlined-basic" label="Employee Name" variant="outlined" style={{ width: '90%' }} onChange={(e) => setEmployeeName(e.target.value)} />
                             <TextField value={employeecity} id="outlined-basic" label="Employee City" variant="outlined" style={{ width: '90%' }} onChange={(e) => setEmployeeCity(e.target.value)} />
@@ -127,7 +137,7 @@ export default function EmployeeDisplay() {
                                             <td style={cellStyle}>{item.name}</td>
                                             <td style={cellStyle}>{item.city}</td>
                                             <td style={{ display: "flex", justifyContent: 'space-evenly' }}>
-                                                <EditIcon onClick={() => handleEdit(item)} style={{ cursor: "pointer" }} />< DeleteIcon onClick={() => handleDelete()} style={{ cursor: 'pointer' }} />
+                                                <EditIcon onClick={() => handleEdit(item)} style={{ cursor: "pointer" }} />< DeleteIcon onClick={() => handleDelete(item.id)} style={{ cursor: 'pointer' }} />
                                             </td>
                                         </tr>
                                     ))
