@@ -7,8 +7,6 @@ import RootReducer from './Storage/RootReducer.jsx';
 import { createStore } from "redux";
 import { Provider } from 'react-redux';
 
-
-
 var store = createStore(RootReducer)
 
 // -----------------redux------------------
