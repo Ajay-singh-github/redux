@@ -10,7 +10,7 @@ function App() {
     <>
       <Router>
         <Routes>
-           <Route path='employeeinterface' element={<EmployeeInterface/>}/>
+           <Route path='/' element={<EmployeeInterface/>}/>
            <Route path='employeedisplay' element={<EmployeeDisplay/>}/>
 
         </Routes>
